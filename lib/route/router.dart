@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/entry_point.dart';
+import 'package:shop/screens/auth/views/email_otp_screen.dart';
 
 import 'screen_export.dart';
 
@@ -88,6 +89,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const PasswordRecoveryScreen(),
       );
+
+    case emailOtpVerification:
+      return MaterialPageRoute(builder: (context) {
+        final email = settings.arguments as String?;
+        return EmailOtpScreen(
+          emailId: email,
+        );
+      });
     // case verificationMethodScreenRoute:
     //   return MaterialPageRoute(
     //     builder: (context) => const VerificationMethodScreen(),

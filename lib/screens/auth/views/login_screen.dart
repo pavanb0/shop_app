@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop/api/api_service.dart';
+import 'package:shop/api_models/email_otp.dart';
 import 'package:shop/api_models/login_request.dart';
 import 'package:shop/api_models/login_response.dart';
-import 'package:shop/components/skleton/skelton.dart';
 import 'package:shop/constants.dart';
 import 'package:shop/route/route_constants.dart';
 
@@ -103,6 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 loginResponse =
                                     await apiService.loginUser(loginRequest);
                                 if (loginResponse.Code == 200) {
+                                  final _storage = const FlutterSecureStorage();
+                                  await _storage.write(
+                                      key: "JwtToken",
+                                      value: loginResponse.token);
                                   Fluttertoast.showToast(
                                       msg: "Login Succesful",
                                       toastLength: Toast.LENGTH_SHORT,
@@ -123,12 +127,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                       backgroundColor: const Color(0XFF28b414),
                                       textColor: Colors.white,
                                       fontSize: 16.0);
+                                  EmailOtpRequest emailOtpRequest =
+                                      EmailOtpRequest(Email: email);
 
-                                  setState(() {
-                                    isloading = false;
-                                  });
+                                  EmailOtpResponse emailOtpResponse =
+                                      await apiService
+                                          .loginotp(emailOtpRequest);
 
-                                  Navigator.pushNamed(context, otpScreenRoute);
+                                  if (emailOtpResponse.Code == 200) {
+                                    setState(() {
+                                      isloading = false;
+                                      Navigator.pushNamed(
+                                          context, emailOtpVerification,
+                                          arguments: email);
+                                    });
+                                  }
                                 } else {
                                   Fluttertoast.showToast(
                                       msg: loginResponse.message,

@@ -1,0 +1,25 @@
+{
+    "@@locale": "hi",
+    "helloWorld": "नमस्कार दुनिया",
+    "welcome_login_screen":"महाअग्रो मार्ट म स्वागत हे!",
+    "login_with_login_screen":"",
+    "forgot_password": "पासवर्ड भूल गए",
+    "dont_have_account": "क्या आपके पास खाता नहीं है?",
+    "log_in":"लोग इन",
+    "sign_up": "साइन अप करें",
+    "@welcome_login_screen": {
+      "description": "लॉगिन स्क्रीन पर दिखाया गया स्वागत संदेश"
+    },
+    "@login_with_login_screen": {
+      "description": "उपयोगकर्ता को लॉगिन करने के लिए प्रेरित करने वाला टेक्स्ट"
+    },
+    "@forgot_password": {
+      "description": "पासवर्ड भूल जाने वाले बटन का टेक्स्ट"
+    },
+    "@dont_have_account": {
+      "description": "उपयोगकर्ता को साइन अप करने के लिए प्रेरित करने वाला टेक्स्ट"
+    },
+    "@sign_up": {
+      "description": "साइन अप बटन के लिए टेक्स्ट"
+    }
+}

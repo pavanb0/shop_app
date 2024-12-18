@@ -1,0 +1,26 @@
+{
+    "@@locale": "mr",
+    "@@author": "Pavan",
+
+    "welcome_login_screen": "महाअग्रो मार्ट मध्ये आपले स्वागत आहे",
+    "login_with_login_screen": "तुमच्या नोंदणी दरम्यान तुमच्या डेटासह लॉग इन करा.",
+    "forgot_password": "पासवर्ड विसरलात?",
+    "dont_have_account": "तुमच्याकडे खाते नाही का?",
+    "sign_up": "साइन अप करा",
+    "log_in":"लोग इन",
+    "@welcome_login_screen": {
+        "description": "लॉगिन स्क्रीनवर दर्शविलेले स्वागत संदेश"
+    },
+    "@login_with_login_screen": {
+        "description": "वापरकर्त्याला लॉगिन करण्यास प्रेरित करणारा मजकूर"
+    },
+    "@forgot_password": {
+        "description": "पासवर्ड विसरल्यास वापरण्यासाठी बटण मजकूर"
+    },
+    "@dont_have_account": {
+        "description": "वापरकर्त्याला साइन अप करण्यास प्रेरित करणारा मजकूर"
+    },
+    "@sign_up": {
+        "description": "साइन अप बटणासाठी मजकूर"
+    }
+}

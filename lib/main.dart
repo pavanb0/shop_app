@@ -13,12 +13,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Shop Template by The Flutter Way',
+      title: 'Mahaagro Mart',
       theme: AppTheme.lightTheme(context),
       // Dark theme is inclided in the Full template
       themeMode: ThemeMode.light,

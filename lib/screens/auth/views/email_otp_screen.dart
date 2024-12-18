@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shop/api/api_client.dart';
+import 'package:shop/api/api_service.dart';
+import 'package:shop/api_models/email_otp.dart';
 import 'package:shop/constants.dart';
 
 class EmailOtpScreen extends StatefulWidget {
@@ -25,6 +29,7 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
     final Size size = MediaQuery.of(context).size;
     double height = MediaQuery.of(context).size.height;
     final formkey = GlobalKey<FormState>();
+    final _apiRequest = ApiService();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -60,8 +65,31 @@ class _EmailOtpScreenState extends State<EmailOtpScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           enabledBorderColor: Color(0XFFFF16ae00),
                           borderColor: Colors.black,
-                          onSubmit: (value) {
-                            print(value);
+                          onSubmit: (value) async {
+                            EmailVerificationRequest otpRequest =
+                                EmailVerificationRequest(
+                                    Email: widget.emailId, Otp: value);
+                            EmailOtpResponse emailOtpResponse =
+                                await _apiRequest.sendotp(otpRequest);
+                            if (emailOtpResponse.Code == 200) {
+                              Fluttertoast.showToast(
+                                  msg: "Email Verified",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: const Color(0XFF28b414),
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            } else if (emailOtpResponse.Code == 401) {
+                              Fluttertoast.showToast(
+                                  msg: "Failed to verify otp",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: const Color(0XFF28b414),
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            }
                           },
                         ),
                       ],

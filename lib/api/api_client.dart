@@ -6,7 +6,7 @@ class ApiClient {
   //local link
   String BaserUrl = "https://062a-152-52-228-70.ngrok-free.app";
   //Productio link
-  final _storage = const FlutterSecureStorage();
+  //final _storage = const FlutterSecureStorage();
 
   ApiClient() {
     _dio = Dio(
@@ -19,12 +19,12 @@ class ApiClient {
 
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (option, handler) async {
-        String? token = await _storage.read(key: "JwtToken");
-        if (token != null) {
-          option.headers['Authorization'] = "Bearer $token";
-        } else {
-          option.headers['Authorization'] = "";
-        }
+        // String? token = await _storage.read(key: "JwtToken");
+        // if (token != null) {
+        // option.headers['Authorization'] = "Bearer $token";
+        // } else {
+        option.headers['Authorization'] = "";
+        // }
         return handler.next(option);
       },
       onResponse: (response, handler) {
